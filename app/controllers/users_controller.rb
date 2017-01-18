@@ -9,6 +9,9 @@ class UsersController < ApplicationController
     #Salva o recurso criado.
     def create
         #O método params retorna um hash com todos os parâmetros enviados pelo usuário.
+        #params.permit!, libera para que os parâmetros possam ser obtidos. Ele foi necessário pois
+        #os atributos não foram liberados para acesso no model User atraveś do attr_accessor.
+        params.permit!
         @user = User.new(params[:user])
         if @user.save
             redirect_to @user, 
