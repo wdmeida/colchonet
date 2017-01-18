@@ -6,18 +6,30 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
+    #Exibe as informações de um recurso específico.
+    def show
+        @user = User.find(params[:id])
+    end
+
     #Salva o recurso criado.
     def create
-        #O método params retorna um hash com todos os parâmetros enviados pelo usuário.
-        #params.permit!, libera para que os parâmetros possam ser obtidos. Ele foi necessário pois
-        #os atributos não foram liberados para acesso no model User atraveś do attr_accessor.
-        params.permit!
-        @user = User.new(params[:user])
+        #O método user_params retorna um hash com todos os parâmetros enviados pelo usuário.
+        @user = User.new(user_params)
         if @user.save
             redirect_to @user, 
                         :notice => 'Cadastro criado com sucesso!'
         else
             render :new
         end
+    end
+
+    private
+
+    def user_params
+        #Verifica a presença da chave :user nos parâmetros vindos do usuário. Se existir,
+        #retorna os parâmetros da chave, caso contrário dispara a exceção ActionController::ParameterMissing.
+        params.
+            require(:user).
+            permit(:email, :full_name, :location, :password, :password_confirmation, :bio)
     end
 end
