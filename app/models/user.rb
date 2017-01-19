@@ -12,8 +12,6 @@ class User < ApplicationRecord
         errors.add(:email, :invalid) unless email.match(EMAIL_REGEXP)
     end
 
-    validates_uniqueness_of :email
-
     #Class macro responsável por fazer a encriptação da senha do usuário.
     has_secure_password
 end

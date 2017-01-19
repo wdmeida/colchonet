@@ -11,6 +11,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     end
 
     #Cria um indice unico no campo email da tabela users.
-    add_index :users, :email, {:uniqueness=> true}
+    add_index :users, :email, {:unique=> true}
   end
 end
