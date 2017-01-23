@@ -2,7 +2,7 @@
 <!-- Lista as mensagens de erros do formulário. -->
 <% if @user.errors.any? %>
     <div id="error_explanation">
-        <h2>Há erros no formulário, por favor corrijá-os antes de proseguir.</h2>
+        <%= t 'general.form_error' %>
     </div>
 <% end %>
 
