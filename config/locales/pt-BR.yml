@@ -19,7 +19,7 @@ pt-BR:
       title: Editar quarto
   
   #Mail
-  signup:
+  signup_mailer:
     confirm_email:
       subject: 'Colcho.net - Confirme seu email!'
       title: 'Seja bem vindo ao Colcho.net!'
