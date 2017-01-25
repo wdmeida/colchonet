@@ -16,6 +16,8 @@ class UsersController < ApplicationController
         #O método user_params retorna um hash com todos os parâmetros enviados pelo usuário.
         @user = User.new(user_params)
         if @user.save
+            SignupMailer.confirm_email(@user).deliver
+
             redirect_to @user, 
                         :notice => 'Cadastro criado com sucesso!'
         else
