@@ -1,6 +1,8 @@
 ---
 pt-BR:
-
+  notice:
+    signed_in: Login realizado com sucesso.
+  
   confirmations:
     success: Email confirmado com sucesso, obrigado!
 

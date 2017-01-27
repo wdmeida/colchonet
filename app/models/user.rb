@@ -1,6 +1,10 @@
 class User < ApplicationRecord
     EMAIL_REGEXP = /\A[^@]+@([^@\.]+\.)[^@\.]+\z/
 
+    #Cria um escopo nomeado que retornará todos os usuários que tiveram as contas confirmadas.
+    #confirmed_at não é nil.
+    scope :confirmed, -> { where.not(confirmed_at: nil) }
+
     #Verifica se os campos foram preenchidos.
     validates_presence_of :email, :full_name, :location
     
@@ -33,5 +37,19 @@ class User < ApplicationRecord
     #Verifica se a confirmação está presente. (Usuário com cadastro confirmado)
     def confirmed?
         confirmed_at.present?
+    end
+
+    #Cria o método authenticate que faz a verificação do email e senha.
+    def self.authenticate(email, password)
+        #Busca o usuário pelo seu email.
+        user = confirmed.find_by(email: email)
+        
+        #Verifica se o usuário foi encontrado.
+        if user.present?
+
+            #Verifica se a senha é válida para o usuário retornado. Caso seja retorna o próprio objeto.
+            #Em caso negativo, retornará false.
+            user.authenticate(password)
+        end
     end
 end
