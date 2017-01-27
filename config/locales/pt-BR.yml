@@ -15,6 +15,11 @@ pt-BR:
       location: "Localização: %{location}"
       bio: "Bio: %{bio}"
   
+  user_sessions:
+    new:
+      title: 'Login'
+      sign_up: 'Cadastre-se'
+
   rooms:
     new:
       title: Cadastro
@@ -66,6 +71,16 @@ pt-BR:
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+
+  activemodel:
+    attributes:
+      user_session:
+        email: Email
+        password: Senha
+    errors:
+      messages:
+        invalid_login: 'Usuário ou senha inválidos'
+
   date:
     abbr_day_names:
     - Dom
