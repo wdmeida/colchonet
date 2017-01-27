@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
     #Define uma rota para um recurso singletom, ou seja, no qual apenas a ação show será criada.
     resource :confirmation, only: [:show]
+
+    #Define a rota para os recursos utilizados para sessão do usuário (create, new e destroy).
+    resource :user_sessions, only: [:create, :new, :destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
