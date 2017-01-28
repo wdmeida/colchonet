@@ -295,3 +295,8 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+
+  flash:
+    notice:
+      signed_in: 'Bem vindo!'
+      signed_out: 'Logout efetuado com sucesso. Até logo!'

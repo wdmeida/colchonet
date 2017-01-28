@@ -6,6 +6,7 @@ class UserSession
 
     #Define o construtor que receberá as informações para a sessão.
     def initialize(session, attributes={})
+        puts attributes
         @session = session
         @email = attributes[:email]
         @password = attributes[:password]

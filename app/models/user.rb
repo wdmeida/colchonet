@@ -41,15 +41,8 @@ class User < ApplicationRecord
 
     #Cria o método authenticate que faz a verificação do email e senha.
     def self.authenticate(email, password)
-        #Busca o usuário pelo seu email.
-        user = confirmed.find_by(email: email)
-        
-        #Verifica se o usuário foi encontrado.
-        if user.present?
-
-            #Verifica se a senha é válida para o usuário retornado. Caso seja retorna o próprio objeto.
-            #Em caso negativo, retornará false.
-            user.authenticate(password)
-        end
+       confirmed.
+            find_by(email: email).
+            try(:authenticate, password)
     end
 end
