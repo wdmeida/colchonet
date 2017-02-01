@@ -6,7 +6,6 @@ class UserSession
 
     #Define o construtor que receberá as informações para a sessão.
     def initialize(session, attributes={})
-        puts attributes
         @session = session
         @email = attributes[:email]
         @password = attributes[:password]
@@ -26,5 +25,15 @@ class UserSession
 
     def store(user)
         @session[:user_id] = user.id
+    end
+
+    #Obtém o usuários corrente da sessão.
+    def current_user
+        User.find(@session[:user_id])
+    end
+
+    #Verifica se a sessão do usuário é válida.
+    def user_signed_in?
+        @session[:user_id].present?
     end
 end
