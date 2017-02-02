@@ -1,5 +1,9 @@
 class UserSessionsController < ApplicationController
-   
+    #define filtro para não autenticação não ser requirida para as ações new e create de sessões
+    #e que seja requerida para se destruir uma sessão do usuário.
+    before_action :require_no_authentication, only: [:new, :create]
+    before_action :require_authentication, only: :destroy
+
     def new
         @user_session = UserSession.new(session)
     end
