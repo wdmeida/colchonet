@@ -1,6 +1,15 @@
 class User < ApplicationRecord
     EMAIL_REGEXP = /\A[^@]+@([^@\.]+\.)[^@\.]+\z/
 
+=begin
+    A class macro has_many faz várias coisas para descobrir o relacionamento. Primeiro, como é um
+    relacionamento um-para-muitos (tem muitos), o nome do relacionamento deverá estar no plural e
+    portanto, o modelo é o Room. Dada a natureza do relacionamento, o ActiveRecord sabe também que
+    o modelo room deverá ter um campo para o próprio modelo user (user_id) e então finalmente, 
+    consegue buscar todos os quartos que pertencem a um usuário.
+=end
+    has_many :rooms
+
     #Cria um escopo nomeado que retornará todos os usuários que tiveram as contas confirmadas.
     #confirmed_at não é nil.
     scope :confirmed, -> { where.not(confirmed_at: nil) }

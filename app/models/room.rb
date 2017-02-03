@@ -1,4 +1,9 @@
 class Room < ApplicationRecord
+    #Define através da class macro belongs_to o relacionamento um para muitos. Através da
+    #class macro, o ActiveRecord sabe qual objeto deve criar devido ao nome do relacionamento
+    #(:user) e também já sabe qual campo usar para buscar o objeto devido (user_id).
+    belongs_to :user
+
     #Verifica a presença dos campos.
     validates_presence_of :title, :location, :description
     
