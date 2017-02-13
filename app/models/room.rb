@@ -1,4 +1,8 @@
 class Room < ApplicationRecord
+    #Define o relacionamento um para muitos, onde um quarto pode possuir muitas avaliações.
+    has_many :reviews
+    has_many :reviewed_rooms, through: :reviews, source: :room
+    
     #Define através da class macro belongs_to o relacionamento um para muitos. Através da
     #class macro, o ActiveRecord sabe qual objeto deve criar devido ao nome do relacionamento
     #(:user) e também já sabe qual campo usar para buscar o objeto devido (user_id).

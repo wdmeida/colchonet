@@ -9,7 +9,8 @@ class User < ApplicationRecord
     consegue buscar todos os quartos que pertencem a um usuário.
 =end
     has_many :rooms
-
+    has_many :reviews
+    
     #Cria um escopo nomeado que retornará todos os usuários que tiveram as contas confirmadas.
     #confirmed_at não é nil.
     scope :confirmed, -> { where.not(confirmed_at: nil) }
