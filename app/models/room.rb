@@ -1,6 +1,6 @@
 class Room < ApplicationRecord
     #Define o relacionamento um para muitos, onde um quarto pode possuir muitas avaliações.
-    has_many :reviews
+    has_many :reviews, dependent: :destroy
     has_many :reviewed_rooms, through: :reviews, source: :room
     
     #Define através da class macro belongs_to o relacionamento um para muitos. Através da

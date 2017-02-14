@@ -7,9 +7,12 @@ class User < ApplicationRecord
     portanto, o modelo é o Room. Dada a natureza do relacionamento, o ActiveRecord sabe também que
     o modelo room deverá ter um campo para o próprio modelo user (user_id) e então finalmente, 
     consegue buscar todos os quartos que pertencem a um usuário.
+    A notação dependent é parecida com o CASCADE do SQL, no caso, a opção destroy, faz com os callbacks
+    sejam executados, destroindo todos os objetos relacionados ao usuário que esta sendo removido, garantindo
+    que sejam apagados todos os quartos por eles cadastrados e todas as avaliações feitas. 
 =end
-    has_many :rooms
-    has_many :reviews
+    has_many :rooms, dependent: :destroy
+    has_many :reviews, dependent: :destroy
     
     #Cria um escopo nomeado que retornará todos os usuários que tiveram as contas confirmadas.
     #confirmed_at não é nil.
