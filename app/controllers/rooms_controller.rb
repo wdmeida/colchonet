@@ -2,16 +2,16 @@ class RoomsController < ApplicationController
   before_action :require_authentication, only: [:new, :edit, :create,:update, :destroy]
 
   def index
-    @rooms = Room.all
+    # O método map, de coleções, retornará um novo Array contendo o resultado do bloco.
+    # Dessa forma, para cada quarto, retornaremos o presenter equivalente.
+    @rooms = Room.most_recent.map do |room|
+      RoomPresenter.new(room, self, false)
+    end
   end
 
   def show
-    @room = Room.find(params[:id])
-
-    if user_signed_in?
-      @user_review = @room.reviews.
-        find_or_initialize_by(user_id: current_user.id)
-    end
+    room_model = Room.find(params[:id])
+    @room = RoomPresenter.new(room_model, self)
   end
 
   def new

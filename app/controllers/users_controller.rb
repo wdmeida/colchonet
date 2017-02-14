@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     before_action :require_no_authentication, only: [:new, :create]
 
     #Aplica o filtro (can_change) antes da ações serem executadas (edit e update).
-    before_action :can_chage, only: [:edit, :update]
+    before_action :can_change, only: [:edit, :update]
 
     #Cria um novo recurso.
     def new

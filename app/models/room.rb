@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+    scope :most_recent, -> { order('created_at DESC') }
+
     #Define o relacionamento um para muitos, onde um quarto pode possuir muitas avaliações.
     has_many :reviews, dependent: :destroy
     has_many :reviewed_rooms, through: :reviews, source: :room

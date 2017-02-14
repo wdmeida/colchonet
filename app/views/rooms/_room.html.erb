@@ -1,10 +1,10 @@
- <article class="room">
-    
-    <h2><%= link_to room.title, room %></h2>
+ <article class="room">  
+    <h2><%= link_to room.title, room.route %></h2>
 
-    <%= render partial: "review", object: @user_review %>
+    <%= render partial: 'review', locals: {room: room} %>
     
     <span class="created">
+
       <%= t '.owner_html', 
               owner: room.user.full_name,
               when: l(room.created_at, format: :short) %>
@@ -23,9 +23,10 @@
 
     <% if belongs_to_user(room) %>
       <ul>
-        <li><%= link_to t('.edit'), edit_room_path(room) %></li>
-        <li><%= link_to  t('.destroy'), room_path(room), method: :delete, 
-                                                         data: {confirm: t('dialogs.destroy')} %></li>
+        <li><%= link_to t('.edit'), edit_room_path(room.route) %></li>
+        <li><%= link_to  t('.destroy'), room_path(room.route), 
+                                        method: :delete, 
+                                        data: {confirm: t('dialogs.destroy')} %></li>
       </ul>
     <% end %>
   </article>

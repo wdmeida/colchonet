@@ -17,6 +17,7 @@ class User < ApplicationRecord
     #Cria um escopo nomeado que retornará todos os usuários que tiveram as contas confirmadas.
     #confirmed_at não é nil.
     scope :confirmed, -> { where.not(confirmed_at: nil) }
+    scope :most_recent, -> { order('created_at DESC') }
 
     #Verifica se os campos foram preenchidos.
     validates_presence_of :email, :full_name, :location
