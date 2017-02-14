@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   LOCALES = /en|pt\-BR/
   
   scope "(:locale)", locale: LOCALES do
-    resources :rooms
+    
+    resources :rooms do
+      resources :reviews, only: [:create, :update], module: :rooms
+    end
+
     resources :users
 
     #Define uma rota para um recurso singletom, ou seja, no qual apenas a ação show será criada.
