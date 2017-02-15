@@ -25,6 +25,7 @@ pt-BR:
   rooms:
     index:
       title:  'Quartos disponíveis'
+      search_results: 'Resultados da busca'
     room:
       owner_html: '&mdash; %{owner} (%{when})'
       edit: 'Editar'
@@ -40,6 +41,8 @@ pt-BR:
         zero: 'Não há avaliações'
         one: '(1 avaliação)'
         other: '(%{count} avaliações)'
+    search:
+      search_for: 'Buscar por...'
   
   #Mail
   signup_mailer:

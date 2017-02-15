@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<%= render 'search' %>
 
-<h1><%= t '.title' %></h1>
-<!--
-  Poderia ser de forma explicita da seguinte forma.
-  <%= render partial: 'room', object: current_user.rooms.first %>
+<h1>
+  <% if @search_query.present? %>
+    <%= t '.search_results' %>
+  <% else %>
+    <%= t '.title' %>
+  <% end %>  
+</h1>
 
- -->
 <%= render @rooms %>

@@ -2,6 +2,9 @@ class RoomsController < ApplicationController
   before_action :require_authentication, only: [:new, :edit, :create,:update, :destroy]
 
   def index
+    @search_query = params[:q]
+    rooms = Room.search(@search_query)
+
     # O método map, de coleções, retornará um novo Array contendo o resultado do bloco.
     # Dessa forma, para cada quarto, retornaremos o presenter equivalente.
     @rooms = Room.most_recent.map do |room|
