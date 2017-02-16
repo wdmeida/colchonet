@@ -1,9 +1,8 @@
 class Room < ApplicationRecord
-    scope :most_recent, -> { order('created_at DESC') }
+    extend FriendlyId
 
     #Define o relacionamento um para muitos, onde um quarto pode possuir muitas avaliações.
     has_many :reviews, dependent: :destroy
-    has_many :reviewed_rooms, through: :reviews, source: :room
     
     #Define através da class macro belongs_to o relacionamento um para muitos. Através da
     #class macro, o ActiveRecord sabe qual objeto deve criar devido ao nome do relacionamento
@@ -11,14 +10,12 @@ class Room < ApplicationRecord
     belongs_to :user
 
     #Verifica a presença dos campos.
-    validates_presence_of :title, :location, :description
+    validates_presence_of :title, :location, :description, :slug
+
+    friendly_id :title, use: [:slugged, :history]
     
     #Valida a quantidade caracteres minimos inseridos no campo description.
     validates_length_of :description, minimun: 20, allow_blank: false
-
-    def complete_name
-        "#{title}, #{location}"
-    end
 
     def self.search(query)
         if query.present?
@@ -26,7 +23,15 @@ class Room < ApplicationRecord
                     title LIKE :query OR
                     description LIKE :query', query: "%#{query}%"])
         else
-            :most_recent
+            all
         end
+    end
+
+    def complete_name
+        "#{title}, #{location}"
+    end
+
+    def self.most_recent
+        order(created_at: :desc)
     end
 end

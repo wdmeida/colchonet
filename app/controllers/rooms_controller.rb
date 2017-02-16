@@ -13,7 +13,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    room_model = Room.find(params[:id])
+    room_model = Room.friendly.find(params[:id])
     @room = RoomPresenter.new(room_model, self)
   end
 
@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
   end
 
   def edit
-    @room = current_user.rooms.find(params[:id])
+    @room = current_user.rooms.friendly.find(params[:id])
   end
 
 
@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
   end
 
   def update
-    @room = current_user.rooms.find(params[:id])
+    @room = current_user.rooms.friendly.find(params[:id])
 
     if @room.update(room_params)
       redirect_to @room, notice: t('flash.notice.room_updated')
@@ -47,12 +47,13 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    @room = current_user.rooms.find(params[:id])
+    @room = current_user.rooms.friendly.find(params[:id])
     @room.destroy
 
     redirect_to rooms_url
   end
 
+  private
   # Never trust parameters from the scary internet, only allow the white list through.
   def room_params
     params.

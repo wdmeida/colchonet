@@ -13,11 +13,11 @@ class User < ApplicationRecord
 =end
     has_many :rooms, dependent: :destroy
     has_many :reviews, dependent: :destroy
+    has_many :reviewed_rooms, through: :reviews, source: :room
     
     #Cria um escopo nomeado que retornará todos os usuários que tiveram as contas confirmadas.
     #confirmed_at não é nil.
     scope :confirmed, -> { where.not(confirmed_at: nil) }
-    scope :most_recent, -> { order('created_at DESC') }
 
     #Verifica se os campos foram preenchidos.
     validates_presence_of :email, :full_name, :location
@@ -25,14 +25,14 @@ class User < ApplicationRecord
     #Verifica o tamanho do campo bio e bloqueia o mesmo de ser vazio.
     validates_length_of :bio, minimun: 30, allow_blank: false
    
+    #Class macro responsável por fazer a encriptação da senha do usuário.
+    #Quando utilizar o has_secure_password, retirar todas as validações de senha pois ele já as inclui.
+    has_secure_password
+
     #Valida o formato do email e verifica se o mesmo já não está cadastrado para outro usuário.
     validate do
         errors.add(:email, :invalid) unless email.match(EMAIL_REGEXP)
     end
-
-    #Class macro responsável por fazer a encriptação da senha do usuário.
-    #Quando utilizar o has_secure_password, retirar todas as validações de senha pois ele já as inclui.
-    has_secure_password
 
     #Executa um callback antes da criação do modelo. before_create é um callback do ActiveRecord
     before_create do |user|
