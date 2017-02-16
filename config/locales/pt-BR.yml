@@ -1,5 +1,13 @@
 ---
 pt-BR:
+  views:
+    pagination:
+      first: "&laquo; Primeira"
+      last: "Última &raquo"
+      previous: "&lsaquo; Anterior"
+      next: "Próxima &rsaquo;"
+      truncate: "..."
+
   notice:
     signed_in: Login realizado com sucesso.
   

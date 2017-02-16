@@ -1,15 +1,15 @@
 class RoomsController < ApplicationController
+  PER_PAGE = 10
+
   before_action :require_authentication, only: [:new, :edit, :create,:update, :destroy]
 
   def index
     @search_query = params[:q]
-    rooms = Room.search(@search_query)
-
-    # O método map, de coleções, retornará um novo Array contendo o resultado do bloco.
-    # Dessa forma, para cada quarto, retornaremos o presenter equivalente.
-    @rooms = Room.most_recent.map do |room|
-      RoomPresenter.new(room, self, false)
-    end
+    rooms = Room.search(@search_query).
+                page(params[:page]).
+                per(PER_PAGE)
+    
+    @rooms = RoomCollectionPresenter.new(rooms.most_recent, self)
   end
 
   def show
