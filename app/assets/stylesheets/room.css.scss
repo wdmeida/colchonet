@@ -14,6 +14,18 @@ $color-stars: #FFD700;
     a { font-size: 1.3em; }
 }
 
+.room-description {
+    p, img {
+        float: left;
+        margin-left: 10px;
+    }
+}
+
+.room-description + ul {
+    padding-top: 10px;
+    clear: both;
+}
+
 #content .review form {
     margin: 0;
 }

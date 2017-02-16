@@ -32,9 +32,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+#Paginação
 gem 'kaminari'
-
+#Url amigáveis
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
+
+#Imagens
+gem 'carrierwave'
+gem 'rmagick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

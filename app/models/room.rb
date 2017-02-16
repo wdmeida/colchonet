@@ -12,10 +12,13 @@ class Room < ApplicationRecord
     #Verifica a presença dos campos.
     validates_presence_of :title, :location, :description, :slug
 
+    mount_uploader :picture, PictureUploader
     friendly_id :title, use: [:slugged, :history]
     
     #Valida a quantidade caracteres minimos inseridos no campo description.
     validates_length_of :description, minimun: 20, allow_blank: false
+
+
 
     def self.search(query)
         if query.present?

@@ -89,6 +89,7 @@ pt-BR:
         description: Descrição
         location: Localização
         title: Título
+        picture: Foto
       user:
         bio: Biografia
         email: Email
