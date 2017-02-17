@@ -18,8 +18,6 @@ class Room < ApplicationRecord
     #Valida a quantidade caracteres minimos inseridos no campo description.
     validates_length_of :description, minimun: 20, allow_blank: false
 
-
-
     def self.search(query)
         if query.present?
             where(['location LIKE :query OR

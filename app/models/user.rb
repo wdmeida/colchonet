@@ -20,19 +20,15 @@ class User < ApplicationRecord
     scope :confirmed, -> { where.not(confirmed_at: nil) }
 
     #Verifica se os campos foram preenchidos.
-    validates_presence_of :email, :full_name, :location
-    
+    validates_presence_of :email, :full_name, :location 
     #Verifica o tamanho do campo bio e bloqueia o mesmo de ser vazio.
     validates_length_of :bio, minimun: 30, allow_blank: false
-   
+    #Valida o formato do email e sua compatibilidade com a expressão regular.
+    validates_format_of :email, with: EMAIL_REGEXP
+
     #Class macro responsável por fazer a encriptação da senha do usuário.
     #Quando utilizar o has_secure_password, retirar todas as validações de senha pois ele já as inclui.
     has_secure_password
-
-    #Valida o formato do email e verifica se o mesmo já não está cadastrado para outro usuário.
-    validate do
-        errors.add(:email, :invalid) unless email.match(EMAIL_REGEXP)
-    end
 
     #Executa um callback antes da criação do modelo. before_create é um callback do ActiveRecord
     before_create do |user|

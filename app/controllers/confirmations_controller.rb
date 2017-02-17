@@ -1,6 +1,6 @@
 class ConfirmationsController < ApplicationController
     def show
-        #O método find_by aceita um hash com os parÇametros para fazer a busca, e retornará
+        #O método find_by aceita um hash com os parâmetros para fazer a busca, e retornará
         #o primeiro resultado encontrado.
         user = User.find_by(confirmation_token: params[:token])
 

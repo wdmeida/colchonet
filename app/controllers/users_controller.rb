@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
     #Aplica o filtro para liberar do login para as ações new e create dos perfis de usuários.
     before_action :require_no_authentication, only: [:new, :create]
-
     #Aplica o filtro (can_change) antes da ações serem executadas (edit e update).
     before_action :can_change, only: [:edit, :update]
 
@@ -41,7 +40,7 @@ class UsersController < ApplicationController
             redirect_to @user,
                 notice: 'Cadastro atualizado com sucesso!'
         else
-            render action: :edit
+            render :edit
         end
     end
 

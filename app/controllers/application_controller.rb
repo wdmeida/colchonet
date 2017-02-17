@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   pois os mesmos extendem ApplicationController.
 =end
   delegate :current_user, :user_signed_in?, to: :user_session
-
   #Para que os métodos do controle seja utilizado nos templates, usamos a class macro helper_method.
   helper_method :current_user, :user_signed_in?
 

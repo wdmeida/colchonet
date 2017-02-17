@@ -10,7 +10,7 @@ class Rooms::ReviewsController < ApplicationController
         head :ok
     end
 
-    def update!
+    def update
         create
     end
 

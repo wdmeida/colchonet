@@ -5,22 +5,6 @@
 
     <%= render partial: 'review', locals: {room: room} %>
     
-    <span class="created">
-
-      <%= t '.owner_html', 
-              owner: room.user.full_name,
-              when: l(room.created_at, format: :short) %>
-
-    </span>
-    
-    <p>
-      <span class="location">
-        <%= link_to  highlight(room.location, @search_query), 
-                     "https://maps.google.com/?q=#{room.location}",
-                     target: :blank %>
-      </span>
-    </p>
-    
     <div class="room-description">
       <%= link_to(
           image_tag(room.thumb_url),
